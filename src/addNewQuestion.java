@@ -184,7 +184,7 @@ public class addNewQuestion extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        adminHome.open=0;
+        AdminHome.open=0;
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

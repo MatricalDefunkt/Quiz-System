@@ -128,7 +128,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         if (jTextField1.getText().equals("admin")&& jPasswordField1.getText().equals("admin"))
                 {
                 setVisible(false);
-                new adminHome().setVisible(true);
+                new AdminHome().setVisible(true);
             }
         else{
                 ImageIcon icon=new ImageIcon("Incorrect Password.png");
