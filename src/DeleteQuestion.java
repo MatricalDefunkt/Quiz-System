@@ -325,7 +325,9 @@ public class DeleteQuestion extends javax.swing.JFrame {
         }
         try {
             Integer.valueOf(questionId);
-            if (Integer.parseInt(questionId) < 0) throw new NumberFormatException();
+            if (Integer.parseInt(questionId) < 0) {
+                throw new NumberFormatException();
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Please enter a valid ID: ID must be an integer greater than 0", "Error!", JOptionPane.ERROR_MESSAGE);
             return;
@@ -347,33 +349,30 @@ public class DeleteQuestion extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Something went wrong!\n" + e, "Error!", JOptionPane.ERROR_MESSAGE);
         }
-        if (this.getSelectedId() == -1) JOptionPane.showMessageDialog(null, String.format("Question with ID: %d was not found!", Integer.parseInt(questionId)), "Not found!", JOptionPane.WARNING_MESSAGE);
+        if (this.getSelectedId() == -1) {
+            JOptionPane.showMessageDialog(null, String.format("Question with ID: %d was not found!", Integer.parseInt(questionId)), "Not found!", JOptionPane.WARNING_MESSAGE);
+        }
 
     }//GEN-LAST:event_SearchButtonMouseClicked
 
     private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked
         Integer id = this.getSelectedId();
-        
+
         if (id == -1) {
             JOptionPane.showMessageDialog(null, "Please search for and select a question ID first.", "Error!", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         Integer choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the question with the ID: " + id, "Confirmation", JOptionPane.OK_CANCEL_OPTION);
-        boolean success = false;
-        if (choice ==  JOptionPane.YES_OPTION) {
+        if (choice == JOptionPane.YES_OPTION) {
             try {
-                success = ConnectionProvider.getConn().createStatement().execute("DELETE FROM question WHERE id = " + id);
+                ConnectionProvider.getConn().createStatement().execute("DELETE FROM question WHERE id = " + id);
             } catch (SQLException ex) {
                 Logger.getLogger(DeleteQuestion.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Something went wrong!\n" + ex, "Error!", JOptionPane.ERROR_MESSAGE);
             }
-            if (success) {
-                JOptionPane.showMessageDialog(null, String.format("Question with ID: %d has been deleted", id), "Success!", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, String.format("Question with ID: %d could not be deleted", id), "Failure!", JOptionPane.ERROR_MESSAGE);
-            }
-        }   
+            JOptionPane.showMessageDialog(null, String.format("Question with ID: %d has been deleted", id), "Success!", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_DeleteButtonMouseClicked
 
     private void ClearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClearButtonMouseClicked
@@ -423,15 +422,15 @@ public class DeleteQuestion extends javax.swing.JFrame {
     }
 
     private Integer selectedId;
-    
+
     private Integer getSelectedId() {
         return selectedId;
     }
-    
+
     private void setSelectedId(Integer id) {
         this.selectedId = id;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AnswerField;
     private javax.swing.JLabel AnswerLabel;
